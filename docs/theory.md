@@ -19,11 +19,7 @@ $$
 In operator notation, the implemented system Hamiltonian is
 
 $$
-\hat{H}_s
-= E_C |C\rangle\langle C|
-+ \sum_{n=1}^{N} E_n |n\rangle\langle n|
-+ \sum_{n=1}^{N} g_n
-\left(|C\rangle\langle n| + |n\rangle\langle C|\right).
+\hat{H}_s = E_C |C\rangle\langle C| + \sum_{n=1}^{N} E_n |n\rangle\langle n|+ \sum_{n=1}^{N} g_n \left(|C\rangle\langle n| + |n\rangle\langle C|\right).
 $$
 
 In the ordered basis
