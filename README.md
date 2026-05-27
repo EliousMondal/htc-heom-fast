@@ -56,7 +56,7 @@ First, it uses scaled HEOM variables.  The scaling improves numerical conditioni
 Second, it avoids constructing the full HEOM Liouvillian matrix.  Instead of forming a giant matrix `M_HEOM` and multiplying it by a vectorized HEOM state, the code evaluates the right-hand side directly:
 
 $$
-\dot{\rho} = f(\rho).
+\frac{\partial \rho}{\partial t} = f(\rho).
 $$
 
 Third, it uses the special star structure of the HTC Hamiltonian in the basis
@@ -88,11 +88,7 @@ $$
 The system Hamiltonian is represented as
 
 $$
-\hat{H}_s
-= E_C |C\rangle\langle C|
-+ \sum_{n=1}^{N_{\mathrm{mol}}} E_n |n\rangle\langle n|
-+ \sum_{n=1}^{N_{\mathrm{mol}}} g_n
-\left( |C\rangle\langle n| + |n\rangle\langle C| \right).
+\hat{H}_s = E_C |C\rangle\langle C| + \sum_{n=1}^{N_{\mathrm{mol}}} E_n  n\rangle\langle n| + \sum_{n=1}^{N_{\mathrm{mol}}} g_n \left( |C\rangle\langle n| + |n\rangle\langle C| \right).
 $$
 
 In matrix form in the basis above,
@@ -162,8 +158,7 @@ $$
 The hierarchy tier is
 
 $$
-\operatorname{tier}(\mathbf{n})
-= n_0+n_1+\cdots+n_{M-1}.
+\mathrm{tier}(\mathbf{n}) = n_0+n_1+\cdots+n_{M-1}.
 $$
 
 The physical reduced density matrix is the zeroth ADO:
