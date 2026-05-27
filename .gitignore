@@ -19,7 +19,6 @@ __MACOSX/
 
 # Simulation outputs
 Data/
-Plots/
 logs/
 *.npz
 *.npy
