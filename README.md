@@ -169,22 +169,27 @@ $$
 
 All other ADOs encode system-bath memory and system-bath correlation information.
 
-The code propagates a scaled hierarchy.  Schematically, the scaled equation is
-
-<!-- $$
-\begin{aligned}
-\frac{d}{dt}\tilde{\rho}_{\mathbf{n}}
-=& -i[\hat{H}_s,\tilde{\rho}_{\mathbf{n}}]
-- \left(\sum_\alpha n_\alpha\nu_\alpha\right)
-\tilde{\rho}_{\mathbf{n}} \\
-&+ \text{upward couplings to }\tilde{\rho}_{\mathbf{n}+\mathbf{e}_\alpha}
-+ \text{downward couplings to }\tilde{\rho}_{\mathbf{n}-\mathbf{e}_\alpha}
-+ \text{optional terminator}.
-\end{aligned}
-$$ -->
+The code propagates a scaled hierarchy. Schematically, the scaled equation is
 
 ```math
-\(\begin{aligned} \frac{d}{dt}\tilde{\rho}_{\mathbf{n}} =& -i[\hat{H}_s,\tilde{\rho}_{\mathbf{n}}] - \left(\sum_\alpha n_\alpha\nu_\alpha\right) \tilde{\rho}_{\mathbf{n}} \\ &+ \text{upward couplings to }\tilde{\rho}_{\mathbf{n}+\mathbf{e}_{\alpha}} \\ &+ \text{downward couplings to }\tilde{\rho}_{\mathbf{n}-\mathbf{e}_{\alpha}} \\ &+ \text{optional terminator}. \end{aligned} \%\%\)MAGIT_PARSER_PROTECT%%```
+\begin{aligned}
+\frac{d}{dt}\tilde{\rho}_{\mathbf{n}}
+&= -i\left[\hat{H}_{s},\tilde{\rho}_{\mathbf{n}}\right]
+-\left(\sum_{\alpha} n_{\alpha}\nu_{\alpha}\right)
+\tilde{\rho}_{\mathbf{n}} \\
+&\quad + \sum_{\alpha}
+\mathcal{U}_{\alpha}\!\left[
+\tilde{\rho}_{\mathbf{n}+\mathbf{e}^{(\alpha)}}
+\right] \\
+&\quad + \sum_{\alpha}
+\mathcal{D}_{\alpha}\!\left[
+\tilde{\rho}_{\mathbf{n}-\mathbf{e}^{(\alpha)}}
+\right] \\
+&\quad + \mathcal{T}\!\left[\tilde{\rho}_{\mathbf{n}}\right].
+\end{aligned}
+```
+
+Here, $\mathcal{U}_{\alpha}$ denotes the upward HEOM coupling, $\mathcal{D}_{\alpha}$ denotes the downward HEOM coupling, and $\mathcal{T}$ denotes the optional terminator.
 
 
 
