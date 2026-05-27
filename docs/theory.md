@@ -146,8 +146,7 @@ $$
 The code stores the one-site coefficients in arrays whose entries are conceptually
 
 $$
-\texttt{nu\_site}[k] = \nu_k, \qquad
-\texttt{c\_site}[k] = c_k.
+\texttt{nu\_site}[k] = \nu_k, \qquad \texttt{c\_site}[k] = c_k.
 $$
 
 For an $N$-site system, these one-site coefficients are expanded into channel coefficients. If the Matsubara index is $k$ and the site index is $s$, then
