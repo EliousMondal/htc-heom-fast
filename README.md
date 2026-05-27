@@ -189,7 +189,7 @@ The code propagates a scaled hierarchy. Schematically, the scaled equation is
 \end{aligned}
 ```
 
-Here, $\mathcal{U}_{\alpha}$ denotes the upward HEOM coupling, $\mathcal{D}_{\alpha}$ denotes the downward HEOM coupling, and $\mathcal{T}$ denotes the optional terminator.
+Here, $`\mathcal{U}_{\alpha}`$ denotes the upward HEOM coupling, $`\mathcal{D}_{\alpha}`$ denotes the downward HEOM coupling, and $`\mathcal{T}`$ denotes the optional terminator.
 
 
 
