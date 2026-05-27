@@ -19,35 +19,35 @@ In other words, this package is meant for calculations where a general HEOM pack
 
 A direct HEOM calculation stores many auxiliary density operators (ADOs).  Each ADO is a system density matrix.  If the system dimension is
 
-```text
-d = Nmol + 1,
-```
+$$
+d = N_{\mathrm{mol}} + 1.
+$$
 
 then one ADO stores a `d x d` complex matrix.  If there are `N_ado` ADOs, one full HEOM state stores
 
-```text
-N_ado * d * d
-```
+$$
+N_{\mathrm{ADO}} d^2
+$$
 
 complex numbers.  The hierarchy count grows combinatorially with the number of bath exponential channels and the hierarchy depth.  For one exponential per site,
 
-```text
-M = Nmol
-N_ado = binomial(M + L, L)
-```
+$$
+M = N_{\mathrm{mol}}, \qquad
+N_{\mathrm{ADO}} = \binom{M+L}{L}.
+$$
 
 where `L` is the hierarchy depth.  For `K_matsubara + 1` exponentials per site,
 
-```text
-M = Nmol * (K_matsubara + 1)
-N_ado = binomial(M + L, L).
-```
+$$
+M = N_{\mathrm{mol}}(K_{\mathrm{matsubara}}+1), \qquad
+N_{\mathrm{ADO}} = \binom{M+L}{L}.
+$$
 
 The memory cost is therefore dominated by the product
 
-```text
-N_ado * (Nmol + 1)^2.
-```
+$$
+N_{\mathrm{ADO}}(N_{\mathrm{mol}}+1)^2.
+$$
 
 This package reduces the practical cost in three ways.
 
@@ -55,15 +55,15 @@ First, it uses scaled HEOM variables.  The scaling improves numerical conditioni
 
 Second, it avoids constructing the full HEOM Liouvillian matrix.  Instead of forming a giant matrix `M_HEOM` and multiplying it by a vectorized HEOM state, the code evaluates the right-hand side directly:
 
-```text
-drho = f(rho).
-```
+$$
+\dot{\rho} = f(\rho).
+$$
 
 Third, it uses the special star structure of the HTC Hamiltonian in the basis
 
-```text
-|C>, |1>, |2>, ..., |Nmol>,
-```
+$$
+|C\rangle, |1\rangle, |2\rangle, \ldots, |N_{\mathrm{mol}}\rangle.
+$$
 
 where only the cavity state couples directly to each molecular excitation.  This allows the Hamiltonian commutator to be applied without dense `d x d` matrix multiplications for every ADO.
 
@@ -73,55 +73,60 @@ where only the cavity state couples directly to each molecular excitation.  This
 
 The package works in the first-excitation basis
 
-```text
-|C>      index 0       one cavity photon
-|n>      index n>=1    molecule n excited
-```
+$$
+|C\rangle \leftrightarrow \text{index }0,
+\qquad
+|n\rangle \leftrightarrow \text{index }n \ge 1.
+$$
 
 In bra-ket notation, the ordered basis is
 
-```text
-{|C>, |1>, |2>, ..., |Nmol>}.
-```
+$$
+\{|C\rangle, |1\rangle, |2\rangle, \ldots, |N_{\mathrm{mol}}\rangle\}.
+$$
 
 The system Hamiltonian is represented as
 
-```text
+$$
 \hat{H}_s
-= E_C |C><C|
-+ sum_{n=1}^{Nmol} E_n |n><n|
-+ sum_{n=1}^{Nmol} g_n ( |C><n| + |n><C| ).
-```
+= E_C |C\rangle\langle C|
++ \sum_{n=1}^{N_{\mathrm{mol}}} E_n |n\rangle\langle n|
++ \sum_{n=1}^{N_{\mathrm{mol}}} g_n
+\left( |C\rangle\langle n| + |n\rangle\langle C| \right).
+$$
 
 In matrix form in the basis above,
 
-```text
-H_s =
-[ E_C   g_1   g_2   ...   g_N ]
-[ g_1   E_1   0     ...   0   ]
-[ g_2   0     E_2   ...   0   ]
-[ ...   ...   ...   ...   ... ]
-[ g_N   0     0     ...   E_N ]
-```
+$$
+\hat{H}_s =
+\begin{pmatrix}
+E_C & g_1 & g_2 & \cdots & g_N \\
+g_1 & E_1 & 0 & \cdots & 0 \\
+g_2 & 0 & E_2 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+g_N & 0 & 0 & \cdots & E_N
+\end{pmatrix}.
+$$
 
 The current fast path assumes the symmetric HTC/Tavis-Cummings structure, usually with
 
-```text
-E_1 = E_2 = ... = E_N,
-g_1 = g_2 = ... = g_N = g.
-```
+$$
+E_1 = E_2 = \cdots = E_N,
+\qquad
+g_1 = g_2 = \cdots = g_N = g.
+$$
 
 The collective Rabi splitting convention used by the command-line driver is
 
-```text
-Omega_R = 2 g sqrt(Nmol).
-```
+$$
+\Omega_R = 2g\sqrt{N_{\mathrm{mol}}}.
+$$
 
 Each site bath couples to the molecular excitation projector
 
-```text
-\hat{Q}_n = |n><n|.
-```
+$$
+\hat{Q}_n = |n\rangle\langle n|.
+$$
 
 In the code this is represented by the integer `sys_alpha`, because each bath channel only needs to know which molecular basis index is selected by the diagonal projector.
 
@@ -131,9 +136,9 @@ In the code this is represented by the integer `sys_alpha`, because each bath ch
 
 For each site-local bath, the bath correlation function is represented as an exponential sum
 
-```text
-C(t) = sum_{k=0}^{K} c_k exp(-nu_k t) + residual.
-```
+$$
+C(t) = \sum_{k=0}^{K} c_k e^{-\nu_k t} + C_{\mathrm{res}}(t).
+$$
 
 Here:
 
@@ -144,40 +149,44 @@ Here:
 
 For `Nmol` molecules and `K + 1` exponential terms per site, the total number of hierarchy channels is
 
-```text
-M = Nmol * (K + 1).
-```
+$$
+M = N_{\mathrm{mol}}(K+1).
+$$
 
 An ADO is indexed by a non-negative integer vector
 
-```text
-n = (n_0, n_1, ..., n_{M-1}).
-```
+$$
+\mathbf{n} = (n_0,n_1,\ldots,n_{M-1}).
+$$
 
 The hierarchy tier is
 
-```text
-tier(n) = n_0 + n_1 + ... + n_{M-1}.
-```
+$$
+\operatorname{tier}(\mathbf{n})
+= n_0+n_1+\cdots+n_{M-1}.
+$$
 
 The physical reduced density matrix is the zeroth ADO:
 
-```text
-rho[0] = \hat{rho}_0(t).
-```
+$$
+\texttt{rho}[0] = \hat{\rho}_0(t).
+$$
 
 All other ADOs encode system-bath memory and system-bath correlation information.
 
 The code propagates a scaled hierarchy.  Schematically, the scaled equation is
 
-```text
-d \tilde{rho}_n / dt
-= -i [\hat{H}_s, \tilde{rho}_n]
-  - (sum_alpha n_alpha nu_alpha) \tilde{rho}_n
-  + upward couplings to \tilde{rho}_{n + e_alpha}
-  + downward couplings to \tilde{rho}_{n - e_alpha}
-  + optional terminator.
-```
+$$
+\begin{aligned}
+\frac{d}{dt}\tilde{\rho}_{\mathbf{n}}
+=& -i[\hat{H}_s,\tilde{\rho}_{\mathbf{n}}]
+- \left(\sum_\alpha n_\alpha\nu_\alpha\right)
+\tilde{\rho}_{\mathbf{n}} \\
+&+ \text{upward couplings to }\tilde{\rho}_{\mathbf{n}+\mathbf{e}_\alpha}
++ \text{downward couplings to }\tilde{\rho}_{\mathbf{n}-\mathbf{e}_\alpha}
++ \text{optional terminator}.
+\end{aligned}
+$$
 
 The exact prefactors are implemented in `rhs_htc_scaled.py`.  The important implementation arrays are:
 
