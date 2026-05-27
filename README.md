@@ -510,8 +510,6 @@ so that `f(rho)` can be accumulated into `res` without allocating a separate der
 - No restart/checkpoint workflow is included yet.
 - No GPU implementation is included.
 - No distributed-memory MPI decomposition is included.
-- No permutation-symmetry ADO reduction is included yet.
-- No unique-variable reduction inside symmetry-adapted ADOs is included yet.
 
 
 
