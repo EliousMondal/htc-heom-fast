@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# OS/editor
+.DS_Store
+__MACOSX/
+.vscode/
+.idea/
+
+# Simulation outputs
+Data/
+Plots/
+logs/
+*.npz
+*.npy
+*.h5
+*.hdf5
+*.out
+*.err

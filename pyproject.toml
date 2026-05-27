@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "htc-heom-fast"
+version = "0.1.0"
+description = "Matrix-free scaled HEOM dynamics for symmetric HTC/Tavis-Cummings models with site-local Drude-Lorentz baths."
+readme = "README.md"
+license = {file = "LICENSE.md"}
+requires-python = ">=3.10"
+authors = [
+  {name = "Mohammad Elious Mondal"}
+]
+keywords = ["HEOM", "open quantum systems", "exciton polaritons", "HTC", "Tavis-Cummings", "Numba"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+  "numpy>=1.23",
+  "numba>=0.58",
+  "matplotlib>=3.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/eliousmondal/htc-heom-fast"
+Repository = "https://github.com/eliousmondal/htc-heom-fast"
+Issues = "https://github.com/eliousmondal/htc-heom-fast/issues"
+Documentation = "https://github.com/eliousmondal/htc-heom-fast/tree/main/docs"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+htc-heom-run = "htc_heom_fast.run_htc:main"
+htc-heom-plot = "htc_heom_fast.plot_htc_dynamics:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

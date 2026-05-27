@@ -1,0 +1,31 @@
+{
+  "title": "htc-heom-fast: Matrix-free scaled HEOM dynamics for symmetric HTC/Tavis-Cummings models",
+  "upload_type": "software",
+  "description": "A small research-oriented Python/Numba package for matrix-free scaled hierarchical equations of motion simulations of symmetric Holstein-Tavis-Cummings and Tavis-Cummings models in the first-excitation manifold with site-local Drude-Lorentz baths.",
+  "creators": [
+    {
+      "name": "Mondal, Mohammad Elious",
+      "affiliation": "University of Rochester"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "version": "0.1.0",
+  "keywords": [
+    "HEOM",
+    "scaled HEOM",
+    "Holstein-Tavis-Cummings",
+    "Tavis-Cummings",
+    "exciton polaritons",
+    "open quantum systems",
+    "Python",
+    "Numba"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/eliousmondal/htc-heom-fast",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
