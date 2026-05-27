@@ -88,7 +88,7 @@ $$
 The system Hamiltonian is represented as
 
 $$
-\hat{H}_s = E_C |C\rangle\langle C| + \sum_{n=1}^{N_{\mathrm{mol}}} E_n  n\rangle\langle n| + \sum_{n=1}^{N_{\mathrm{mol}}} g_n \left( |C\rangle\langle n| + |n\rangle\langle C| \right).
+\hat{H}_s = E_C |C\rangle\langle C| + \sum_{n=1}^{N_{\mathrm{mol}}} E_n |n\rangle\langle n| + \sum_{n=1}^{N_{\mathrm{mol}}} g_n \left( |C\rangle\langle n| + |n\rangle\langle C| \right).
 $$
 
 In matrix form in the basis above,
@@ -189,7 +189,7 @@ The code propagates a scaled hierarchy. Schematically, the scaled equation is
 \end{aligned}
 ```
 
-Here, $`\mathcal{U}_{\alpha}`$ denotes the upward HEOM coupling, $`\mathcal{D}_{\alpha}`$ denotes the downward HEOM coupling, and $`\mathcal{T}`$ denotes the optional terminator.
+Here, $\mathcal{U}_{\alpha}$ denotes the upward HEOM coupling, $\mathcal{D}_{\alpha}$ denotes the downward HEOM coupling, and $\mathcal{T}$ denotes the optional terminator.
 
 
 
@@ -518,4 +518,3 @@ so that `f(rho)` can be accumulated into `res` without allocating a separate der
 ## Suggested citation text
 
 If you use this code before a formal paper or DOI exists, cite the GitHub repository and the exact commit hash used for the calculations.
-

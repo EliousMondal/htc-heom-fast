@@ -10,7 +10,7 @@ The code targets a first-excitation Holstein-Tavis-Cummings or Tavis-Cummings ty
 \{|C\rangle, |1\rangle, |2\rangle, \ldots, |N\rangle\}.
 ```
 
-Here, $|C\rangle$ is the state with one cavity photon and all molecules in their electronic ground state. The state $|n\rangle$ is the state with molecule $n$ electronically excited and no cavity photon. The number of molecules is $N = \texttt{Nmol}$, so the system Hilbert-space dimension is
+Here, $|C\rangle$ is the state with one cavity photon and all molecules in their electronic ground state. The state $|n\rangle$ is the state with molecule $n$ electronically excited and no cavity photon. The number of molecules is the code parameter `Nmol`, denoted here by $N$, so the system Hilbert-space dimension is
 
 ```math
 d = N + 1.
@@ -277,7 +277,13 @@ when ADO $J$ has multi-index
 \mathbf{n}_J = \mathbf{n}_I + \mathbf{e}_\alpha.
 ```
 
-If $\mathbf{n}_I + \mathbf{e}_\alpha$ lies outside the depth truncation, then
+If the candidate multi-index
+
+```math
+\mathbf{n}_I + \mathbf{e}_\alpha
+```
+
+lies outside the depth truncation, then
 
 ```math
 \texttt{up}[I,\alpha] = -1.
@@ -405,7 +411,7 @@ For each bath channel,
 \hat{Q}_\alpha = |p\rangle\langle p|,
 ```
 
-where $p = \texttt{sys\_alpha}[\alpha]$.
+where the integer $p$ is read from `sys_alpha[alpha]`.
 
 For any matrix $\rho$, the commutator has elements
 
