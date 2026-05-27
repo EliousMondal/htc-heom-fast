@@ -182,8 +182,10 @@ The code propagates a scaled hierarchy.  Schematically, the scaled equation is
 + \text{optional terminator}.
 \end{aligned}
 $$ -->
+
 ```math
-\(\begin{aligned} \frac{d}{dt}\tilde{\rho}_{\mathbf{n}} =& -i[\hat{H}_s,\tilde{\rho}_{\mathbf{n}}] - \left(\sum_\alpha n_\alpha\nu_\alpha\right) \tilde{\rho}_{\mathbf{n}} \\ &+ \text{upward couplings to }\tilde{\rho}_{\mathbf{n}+\mathbf{e}_\alpha} + \text{downward couplings to }\tilde{\rho}_{\mathbf{n}-\mathbf{e}_\alpha} + \text{optional terminator}. \end{aligned} \%\%\)MAGIT_PARSER_PROTECT%%```
+\(\begin{aligned} \frac{d}{dt}\tilde{\rho}_{\mathbf{n}} =& -i[\hat{H}_s,\tilde{\rho}_{\mathbf{n}}] - \left(\sum_\alpha n_\alpha\nu_\alpha\right) \tilde{\rho}_{\mathbf{n}} \\ &+ \text{upward couplings to }\tilde{\rho}_{\mathbf{n}+\mathbf{e}_{\alpha}} \\ &+ \text{downward couplings to }\tilde{\rho}_{\mathbf{n}-\mathbf{e}_{\alpha}} \\ &+ \text{optional terminator}. \end{aligned} \%\%\)MAGIT_PARSER_PROTECT%%```
+
 
 
 The exact prefactors are implemented in `rhs_htc_scaled.py`.  The important implementation arrays are:
